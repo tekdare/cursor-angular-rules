@@ -22,7 +22,7 @@ A structured set of `.cursor/rules/*.mdc` files designed to constrain Cursor AI 
 Our monorepo cleanly separates the ASP.NET Core host, the Angular SPA client, and shared libraries to enforce clear boundary definitions and clean architecture:
 
 ```text
-cursor-rules / RBAC.Lab Monorepo /
+cursor-rules /
 ├── .cursor/                  # Global Cursor AI rules (alwaysApply: true)
 │   ├── persona/              # Persona expert skill definitions (@CSA, @CIE, @BAE, @FTL, @SEC, @QAE)
 │   └── rules/                # Domain-specific Cursor AI rules (alwaysApply: false)
