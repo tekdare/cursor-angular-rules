@@ -20,10 +20,10 @@ Project/
 
 ## 🏛️ 總體方案與存放庫結構 (Monorepo Root)
 
-本專案採用 RBAC.Lab 經典全端方案結構，完美結合 **.NET 10 (或更新的 LTS 版本)** 宿主與相鄰類別庫，以及位於 `ClientApp` 內的 **Angular v20 (或更新的 LTS 版本)** 現代化 SPA。
+本專案採用 RBAC.Lab 經典全端方案結構，結合 **.NET 10 (或更新的 LTS 版本)** 宿主與相鄰類別庫，以及位於 `ClientApp` 內的 **Angular v20 (或更新的 LTS 版本)** 現代化 SPA。
 
 ```text
-RBAC.Lab Monorepo Root /
+Monorepo Root /
 ├── .cursor/                  # 專案層級 Cursor 全域規則 (alwaysApply: true)
 │   ├── persona/              # Persona 專家角色技能定義檔 (@CSA, @CIE, @BAE, @FTL, @SEC, @QAE)
 │   └── rules/                # 領域與技術專屬 Cursor 規則 (alwaysApply: false)
