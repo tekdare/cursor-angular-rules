@@ -1,4 +1,4 @@
-﻿---
+---
 description: 專案安全、資料保護、驗證與測試底線
 alwaysApply: true
 ---
@@ -12,8 +12,8 @@ alwaysApply: true
 - 所有 API 錯誤處理都應回傳安全且一致的錯誤格式。
 
 ## 2. 測試與驗證
-- 新增或修改功能時，應補齊對應單元測試、整合測試或 migration 驗證。
-- 不可忽略 lint、build、test、type check 或資料庫 migration 驗證。
+- 新增或修改功能時，應補齊對應的 Vitest 3 單元測試、整合測試或 migration 驗證。
+- 嚴格遵守 ESLint 9 Flat Config (`eslint.config.mjs`) 規範，不可忽略 lint、build、test、type check 或資料庫 migration 驗證。
 - 若無法完成測試，必須明確標示未驗證風險與原因。
 
 ## 3. 可維護性

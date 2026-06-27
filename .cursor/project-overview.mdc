@@ -1,13 +1,15 @@
-﻿---
+---
 description: Monorepo 專案總覽與 AI 協作總則，適用於整個倉庫
 alwaysApply: true
 ---
 
 # 專案總覽
 
-## 1. 專案定位
-- 本倉庫為 AI Rules-Driven 的企業級 monorepo。
-- 前端以 Angular 為主，後端以 C# 微服務為主，資料層涵蓋 MS-SQL、Oracle、PostgreSQL、MySQL、SQLite。
+## 1. 專案定位與技術堆疊
+- 本倉庫為 AI Rules-Driven 的企業級 Nx Monorepo (v21)。
+- 前端採用 Angular v20 搭配 Vite 6 與 AnalogJS；後端採用 C# / .NET 微服務與 Node/Nest 容器架構。
+- 測試與品管涵蓋 Vitest 3 測試框架與 ESLint 9 Flat Config 規範。
+- 資料層涵蓋 MS-SQL、Oracle、PostgreSQL、MySQL、SQLite。
 - 所有 AI 生成內容都必須優先遵守專案既有架構、命名、分層與安全規範。
 
 ## 2. AI 協作原則

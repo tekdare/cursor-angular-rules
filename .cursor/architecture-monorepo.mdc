@@ -1,4 +1,4 @@
-﻿---
+---
 description: Monorepo 架構與跨層責任邊界規則
 alwaysApply: true
 ---
@@ -11,13 +11,15 @@ alwaysApply: true
 - 技術細節依賴只能由外向內，不得由 Domain 直接依賴 Infrastructure。
 
 ## 2. 路徑與責任邊界
-- `apps/`、`libs/` 主要承載 Angular 應用與函式庫。
-- `services/`、`src/`、`api/` 主要承載 C# 微服務或 API 專案。
-- `database/`、`migrations/`、`sql/` 主要承載資料表定義、migration 與資料庫腳本。
+- `apps/frontend/`：主要承載 Angular v20 / Vite 現代化前端應用程式。
+- `apps/backend/`：主要承載後端服務容器與 BFF (Backend for Frontend) 進入點。
+- `libs/`：共享生態庫，嚴格細分為 `libs/frontend/` (UI 與資料存取)、`libs/backend/` (驗證與資料庫實作) 及 `libs/shared/` (共用型別與公用程式)。
+- `services/`、`src/`、`api/`：主要承載 C# / .NET 微服務核心領域與 API 專案。
+- `database/`、`migrations/`、`sql/`：主要承載資料表定義、migration 與資料庫腳本。
 - CI/CD、容器、部署設定應與業務邏輯分離。
 
 ## 3. AI 生成程式碼要求
-- 任何新增檔案都必須放在合理目錄，並遵守對應技術規則。
+- 任何新增檔案都必須放在合理目錄，並遵守對應技術規則與 Nx 模組化規範。
 - 變更前先閱讀相鄰檔案的命名與實作風格，再產出一致的程式碼。
 - 重構時優先維持公開 API、資料契約與 migration 相容性。
 
