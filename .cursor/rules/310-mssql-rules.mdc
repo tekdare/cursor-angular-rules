@@ -1,0 +1,25 @@
+﻿---
+description: Microsoft SQL Server 專屬規範
+globs:
+  - "database/mssql/**/*.sql"
+  - "sql/mssql/**/*.sql"
+  - "**/*mssql*.sql"
+alwaysApply: false
+---
+
+# MSSQL 規範
+
+## 1. 型別與命名
+- 文字優先使用 `nvarchar`，避免不必要的 `varchar` 編碼風險。
+- 日期時間優先使用 `datetime2`。
+- 金額與精度資料使用明確的 `decimal(p,s)`。
+
+## 2. 查詢與 DML
+- 需要回傳寫入結果時優先考慮 `OUTPUT`。
+- 使用 `TOP` 時需搭配明確 `ORDER BY`。
+- 謹慎使用 `MERGE`，避免競態與已知語意風險。
+
+## 3. 維運
+- 考慮 transaction scope、lock escalation 與死鎖風險。
+- 大量更新需評估索引、批次與 log 成長。
+- 使用 temp table 或 table variable 時需評估實際資料量。

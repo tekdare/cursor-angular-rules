@@ -1,0 +1,25 @@
+﻿---
+description: Oracle Database 專屬規範
+globs:
+  - "database/oracle/**/*.sql"
+  - "sql/oracle/**/*.sql"
+  - "**/*oracle*.sql"
+alwaysApply: false
+---
+
+# Oracle 規範
+
+## 1. 型別與結構
+- 使用 `VARCHAR2`、`NUMBER` 等 Oracle 正式型別。
+- 主鍵生成需明確區分 sequence、trigger、identity 等策略。
+- 注意 schema 與 object owner 的區別。
+
+## 2. SQL / PL-SQL
+- 區分一般 SQL 與 PL/SQL block 的語法範圍。
+- 程序、函式、套件需有明確命名與例外處理。
+- 注意 Oracle 對空字串與 null 的行為差異。
+
+## 3. 效能
+- 使用 explain plan 檢查索引與 join 策略。
+- 注意函式包裹欄位造成索引失效。
+- 大量批次與交易需評估 undo、redo 與鎖定影響。

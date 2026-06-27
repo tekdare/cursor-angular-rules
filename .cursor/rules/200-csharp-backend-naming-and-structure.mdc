@@ -1,0 +1,32 @@
+﻿---
+description: C# 微服務命名、專案結構與基礎程式碼規範
+globs:
+  - "services/**/*.cs"
+  - "src/**/*.cs"
+  - "api/**/*.cs"
+alwaysApply: false
+---
+
+# C# 命名與結構規範
+
+## 1. 命名
+- 類別、record、enum 使用 `PascalCase`。
+- 私有欄位使用 `_camelCase`。
+- 介面使用 `I` 前綴，例如 `IUserRepository`。
+- DTO、Request、Response、Command、Query、Handler 使用明確後綴。
+
+## 2. 結構
+- 依責任分 Application、Domain、Infrastructure、Api。
+- Controller、Endpoint、Handler、Service、Repository 不可混用職責。
+- Domain 不直接依賴外部框架與資料庫實作。
+
+## 3. 程式碼品質
+- 開啟 nullable reference types。
+- 禁止 `dynamic` 與過度使用 object。
+- 方法需短小、明確，避免超長 God class 或肥大 service。
+- 優先用不可變資料結構與清楚的 DTO 邊界。
+
+## 4. 依賴注入
+- 服務需透過 DI 註冊與注入。
+- Service lifetime 需符合使用情境，不可任意全部註冊為 singleton。
+- 不可在業務邏輯中直接 new 出外部依賴而繞過 DI。

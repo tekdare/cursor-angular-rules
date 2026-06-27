@@ -1,0 +1,31 @@
+﻿---
+description: C# API、Controller、Minimal API、驗證與錯誤回應規範
+globs:
+  - "services/**/*Controller.cs"
+  - "src/**/*Controller.cs"
+  - "api/**/*.cs"
+  - "**/Program.cs"
+alwaysApply: false
+---
+
+# C# API 規範
+
+## 1. API 設計
+- 路由需清楚、資源導向、版本策略一致。
+- Controller 與 Minimal API 僅負責協調，不承擔核心商業邏輯。
+- 回傳型別需明確，避免模糊 object 回傳。
+
+## 2. Validation
+- 所有輸入模型都需驗證。
+- 驗證失敗應回傳一致格式，例如 ProblemDetails 或統一錯誤 DTO。
+- 不可假設前端或外部呼叫端一定傳入合法資料。
+
+## 3. Error Handling
+- 使用一致的例外處理 middleware 或 filter。
+- 不回傳堆疊、連線資訊、機敏錯誤訊息。
+- 4xx 與 5xx 的責任與回應格式需清楚分離。
+
+## 4. REST 與契約
+- GET 不做有副作用的操作。
+- DELETE、PATCH、PUT、POST 需遵守語意。
+- 契約變更要提示相容性影響，必要時採版本化。

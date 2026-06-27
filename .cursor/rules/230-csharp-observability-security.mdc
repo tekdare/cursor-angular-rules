@@ -1,0 +1,30 @@
+﻿---
+description: C# 微服務的 logging、trace、health check、security 與 resilience 規範
+globs:
+  - "services/**/*.cs"
+  - "src/**/*.cs"
+  - "**/Program.cs"
+alwaysApply: false
+---
+
+# C# 可觀測性與安全規範
+
+## 1. Logging
+- 使用結構化日誌，不以字串拼接紀錄核心事件。
+- log 內容需保留 correlation id、trace id、關鍵業務鍵值。
+- 不記錄密碼、token、個資全文與敏感內容。
+
+## 2. Observability
+- 提供 health check、readiness 與 liveness 機制。
+- 關鍵流程需可串接 tracing 與 metrics。
+- 重大錯誤需可追蹤到服務、端點與依賴來源。
+
+## 3. Security
+- 驗證與授權需明確，不假設內網就可信。
+- 祕密資訊必須走 secret manager 或環境變數，不可硬編碼。
+- 對外 API 必須考慮 CORS、rate limiting、輸入驗證與最小權限。
+
+## 4. Resilience
+- 對外呼叫需設定 timeout、retry、circuit breaker 或 fallback 策略。
+- 重試不可導致重複寫入或非預期副作用。
+- 事件、訊息與批次工作需具備冪等性設計。

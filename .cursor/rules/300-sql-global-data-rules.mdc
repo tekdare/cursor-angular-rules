@@ -1,0 +1,32 @@
+﻿---
+description: 跨資料庫共通 SQL、安全、命名、索引與 migration 規範
+globs:
+  - "database/**/*.sql"
+  - "sql/**/*.sql"
+  - "migrations/**/*.sql"
+  - "**/*.sql"
+alwaysApply: false
+---
+
+# SQL 共通規範
+
+## 1. 命名
+- table、column、index、constraint、view、procedure 命名需一致且可讀。
+- 不使用語意不明的縮寫。
+- 主鍵、外鍵、唯一鍵、索引需有明確命名規則。
+
+## 2. 查詢安全
+- 一律使用參數化查詢。
+- 禁止字串拼接 SQL。
+- 禁止 `SELECT *`，需明列欄位。
+- 需明確處理 null、時區、排序規則與資料型別轉換。
+
+## 3. Migration
+- migration 需具備可重跑、可回滾或至少可安全補償的策略。
+- schema 變更需考慮既有資料相容性。
+- 大量資料更新、欄位重命名、索引重建都必須提示風險。
+
+## 4. 效能
+- 所有查詢都需考慮索引與執行計畫。
+- 避免無限制全表掃描、隱式型別轉換與不必要排序。
+- 大型批次操作需分批與可觀測。

@@ -1,0 +1,36 @@
+﻿---
+description: Angular Component、Template、Style 與 A11y 規範
+globs:
+  - "apps/**/*.component.ts"
+  - "libs/**/*.component.ts"
+  - "apps/**/*.component.html"
+  - "libs/**/*.component.html"
+  - "apps/**/*.component.css"
+  - "libs/**/*.component.css"
+alwaysApply: false
+---
+
+# Angular 元件規範
+
+## 1. Component Skeleton
+- 使用 `ChangeDetectionStrategy.OnPush` 作為預設。
+- 在 decorator 中明確列出 `imports`。
+- Host binding 優先寫在 `host` 物件中，避免 `@HostBinding` 與 `@HostListener`。
+- 模板中會使用的成員優先標記為 `protected readonly`。
+
+## 2. Template 規則
+- 優先使用 `@if`、`@for`、`@switch`、`@defer` 新式控制流。
+- 避免把複雜邏輯寫在模板表達式中。
+- 優先使用語意化 HTML，不用純 `div` 模擬 button。
+- `ngClass` 與 `ngStyle` 非首選，優先使用 class/style binding。
+
+## 3. 樣式規範
+- 採 BEM 或一致的區塊命名策略。
+- 使用 CSS Variables 管理顏色、間距與尺寸。
+- 預設支援響應式設計與深色模式相容性。
+- 不以 `!important` 作為常規解法。
+
+## 4. 可及性
+- 所有互動元素都必須有清楚的 aria 屬性與鍵盤操作支援。
+- 切換類元件需同步 `aria-expanded`、`aria-selected` 等狀態。
+- 圖像、圖示按鈕與表單欄位都需提供可及性描述。

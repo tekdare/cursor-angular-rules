@@ -1,0 +1,29 @@
+﻿---
+description: Angular 路由、表單、HTTP 與錯誤處理規範
+globs:
+  - "apps/**/*.ts"
+  - "libs/**/*.ts"
+alwaysApply: false
+---
+
+# Angular 路由、表單與 HTTP 規範
+
+## 1. Routing
+- 功能路由預設採 lazy loading。
+- 路由守衛、resolver、資料載入責任需清楚分離。
+- 不將商業邏輯直接堆在 routing 設定中。
+
+## 2. Forms
+- 優先使用 Reactive Forms。
+- 所有輸入欄位都必須有驗證規則與對應錯誤訊息。
+- 表單狀態、送出中、成功、失敗都必須有明確 UI 回饋。
+
+## 3. HTTP
+- API 呼叫應封裝在 service 中，不直接散落於 component。
+- 必須處理 loading、success、error 三種狀態。
+- 針對可重試或快取的請求需有明確策略，不可重複濫發請求。
+
+## 4. 錯誤處理
+- 使用一致的錯誤模型與使用者友善訊息。
+- 不將伺服器內部錯誤細節直接顯示給使用者。
+- 需考慮逾時、網路失敗、權限不足與資料格式錯誤等情境。

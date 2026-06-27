@@ -1,0 +1,44 @@
+﻿---
+description: Angular 響應式狀態規範——適用於所有 Service 及 Component 檔案，統一 RxJS 與 Signals 的命名與邊界
+globs:
+  - "apps/**/*.component.ts"
+  - "libs/**/*.component.ts"
+  - "apps/**/*.service.ts"
+  - "libs/**/*.service.ts"
+alwaysApply: false
+---
+
+# Angular RxJS 與 Signals 規範
+
+> 本規則在 Cursor 開啟或編輯任何 `*.service.ts` 或 `*.component.ts` 時自動疊加載入，
+> 與 `000-global-naming.mdc` 及 `100-angular-components.mdc` 同時生效。
+
+## 1. 命名慣例速查
+
+| 類型 | 命名規則 | 範例 |
+|------|----------|------|
+| RxJS Observable | `camelCase` + `$` 後綴 (芬蘭式命名) | `user$`、`isLoading$`、`formValue$` |
+| RxJS Subject | `camelCase` + `Subject$` | `destroy$`（`Subject<void>`） |
+| RxJS BehaviorSubject | `camelCase` + `$` | `authState$`（對外暴露為 Observable） |
+| Angular Signal | `camelCase` 一般名詞/形容詞，**嚴禁** `$` | `count`、`isActive`、`userData` |
+| Computed Signal | `camelCase` 動詞片語或衍生名詞 | `totalPrice`、`filteredItems`、`hasPermission` |
+| Signal Input | `camelCase` 描述性名詞，嚴禁加上 `$` | `userId`、`initialValue` |
+| Effect | `camelCase` + `Effect` 後綴（選用） | `syncToStorageEffect` |
+
+## 2. 使用邊界
+- 元件本機狀態優先使用 `signal()`。
+- 衍生狀態優先使用 `computed()`。
+- 跨非同步資料流、HTTP、WebSocket、事件流優先使用 RxJS。
+- 模板要消費 Observable 時，優先 `async` pipe 或 `toSignal()` 橋接。
+
+## 3. 訂閱與資源釋放
+- 元件內禁止隨意 `.subscribe()`。
+- 若必須訂閱，需搭配 `takeUntilDestroyed()`。
+- 不使用手動 unsubscribe 模式。
+- 熱流優先使用 `shareReplay({ bufferSize: 1, refCount: true })`。
+
+## 4. 禁止事項
+- 禁止 `signal.mutate()`。
+- 禁止巢狀 subscribe。
+- 禁止在 effect 中無控制地寫回造成循環依賴。
+- 禁止混用 Signal 命名與 Observable 命名慣例。

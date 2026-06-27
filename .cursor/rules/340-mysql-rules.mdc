@@ -1,0 +1,25 @@
+﻿---
+description: MySQL 專屬規範
+globs:
+  - "database/mysql/**/*.sql"
+  - "sql/mysql/**/*.sql"
+  - "**/*mysql*.sql"
+alwaysApply: false
+---
+
+# MySQL 規範
+
+## 1. 基礎設定
+- 文字編碼預設採 `utf8mb4`。
+- 主鍵自增欄位可使用 `AUTO_INCREMENT`，但需評估分散式場景。
+- 日期時間型別依需求選擇 `datetime` 或 `timestamp`。
+
+## 2. DML 與查詢
+- upsert 可使用 `INSERT ... ON DUPLICATE KEY UPDATE`，但須確認唯一鍵策略。
+- 查詢排序與分頁需搭配穩定索引。
+- 注意不同 storage engine 的交易與鎖定行為。
+
+## 3. 相容性與效能
+- 避免依賴過於寬鬆的隱式型別轉換。
+- 需注意 collations 對排序與比對結果的影響。
+- 批次更新與 schema 變更需評估長交易與鎖表風險。

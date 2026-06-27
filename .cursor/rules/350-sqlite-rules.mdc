@@ -1,0 +1,25 @@
+﻿---
+description: SQLite 專屬規範，適用於本機開發、測試與輕量資料場景
+globs:
+  - "database/sqlite/**/*.sql"
+  - "sql/sqlite/**/*.sql"
+  - "**/*sqlite*.sql"
+alwaysApply: false
+---
+
+# SQLite 規範
+
+## 1. 使用定位
+- SQLite 主要用於本機開發、單機工具、測試或輕量嵌入式場景。
+- 不可直接假設 SQLite 行為與企業級 RDBMS 完全一致。
+- 用於測試時，需特別注意與正式資料庫的方言差異。
+
+## 2. 型別與結構
+- SQLite 型別系統較鬆散，需在應用層補強驗證。
+- migration 設計需考慮 ALTER TABLE 能力限制。
+- 主鍵、自增與外鍵行為需明確驗證。
+
+## 3. 查詢與交易
+- 不可把 SQLite 特例當跨資料庫通用規則。
+- 大量寫入、併發與鎖定行為需特別小心。
+- 用於測試替身時，需清楚標示與正式 DB 的能力落差。

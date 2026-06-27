@@ -1,0 +1,29 @@
+﻿---
+description: C# Application、Domain、Infrastructure 分層與資料存取規範
+globs:
+  - "services/**/*.cs"
+  - "src/**/*.cs"
+alwaysApply: false
+---
+
+# C# 分層實作規範
+
+## 1. Application Layer
+- Use case、command/query handler、application service 應聚焦流程協調。
+- Application layer 不直接依賴具體 DB driver 或外部服務 SDK。
+- 跨聚合協調、交易邊界與驗證流程應在此層清楚表達。
+
+## 2. Domain Layer
+- Domain model 應承載核心業務規則與不變條件。
+- 不在 Domain 放入 ORM、HTTP、MQ、檔案系統等技術細節。
+- 複雜條件需以值物件、領域服務或方法封裝，不散落於 controller。
+
+## 3. Infrastructure Layer
+- Repository、外部 API client、快取、訊息匯流排、資料庫存取放在 Infrastructure。
+- SQL、ORM mapping、連線管理不得滲透進 Domain。
+- 所有 I/O 操作都需考慮逾時、取消權杖與錯誤處理。
+
+## 4. 資料存取
+- 禁止在 API/controller 直接寫 SQL。
+- 需明確區分讀寫模型與交易範圍。
+- 查詢需考慮效能、索引與 N+1 問題。

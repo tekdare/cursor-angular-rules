@@ -1,0 +1,26 @@
+﻿---
+description: PostgreSQL 專屬規範
+globs:
+  - "database/postgresql/**/*.sql"
+  - "sql/postgresql/**/*.sql"
+  - "**/*postgres*.sql"
+  - "**/*pgsql*.sql"
+alwaysApply: false
+---
+
+# PostgreSQL 規範
+
+## 1. 方言特性
+- 可使用 `RETURNING` 回傳 insert/update/delete 結果。
+- 衝突處理優先用 `ON CONFLICT` 明確表達。
+- 不區分大小寫查詢可使用 `ILIKE`，但需評估索引影響。
+
+## 2. 型別
+- 善用 `jsonb`、`uuid`、`timestamp with time zone`，但需明確界定用途。
+- 陣列與 JSON 欄位不可取代正常正規化設計，除非需求明確。
+- 使用 numeric/decimal 儲存精度敏感資料。
+
+## 3. 效能與維護
+- 需考慮 vacuum、analyze、bloat 與 index maintenance。
+- 大量 upsert 與 JSON 查詢要確認索引策略。
+- CTE、window function、materialized view 應依場景使用，不可濫用。

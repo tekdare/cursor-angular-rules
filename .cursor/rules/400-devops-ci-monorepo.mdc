@@ -1,0 +1,34 @@
+﻿---
+description: Monorepo 的 DevOps、CI/CD、環境設定、容器與發佈規範
+globs:
+  - "**/Dockerfile"
+  - "**/*.yml"
+  - "**/*.yaml"
+  - ".github/**/*.yml"
+  - ".github/**/*.yaml"
+  - "azure-pipelines*.yml"
+  - "docker-compose*.yml"
+alwaysApply: false
+---
+
+# DevOps 與 CI/CD 規範
+
+## 1. Pipeline 原則
+- pipeline 必須可重現、可觀測、可回滾。
+- build、lint、test、security scan、artifact publish 應明確分階段。
+- 不可跳過關鍵品質關卡直接部署正式環境。
+
+## 2. Monorepo 策略
+- 優先使用增量建置、受影響範圍分析與快取機制。
+- 前端、後端、資料庫 migration 的驗證流程需獨立且可組合。
+- 變更應盡量只影響必要模組，避免全倉庫重建。
+
+## 3. 容器與環境
+- Dockerfile 需採最小權限與精簡基底映像。
+- 環境變數需有命名一致性與敏感資訊隔離。
+- 不得把祕密資訊寫入版本庫或映像檔。
+
+## 4. 發佈與稽核
+- 發佈前需驗證版本、schema、相容性與回滾方案。
+- migration 與應用部署順序需可控。
+- 所有正式變更都應保留追蹤資訊與審計線索。
